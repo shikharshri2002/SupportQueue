@@ -1,0 +1,46 @@
+<main class="login-layout">
+  <section class="login-story" aria-label="Support Queue introduction">
+    <div class="brand"><span class="brand-mark">⌘</span><span>support <b>queue</b></span></div>
+    <div class="story-copy">
+      <p class="eyebrow">EMPLOYEE OPERATIONS / 01</p>
+      <h1>Keep every request <span>moving forward.</span></h1>
+      <p class="story-description">A calm, focused workspace for the people who keep your business running.</p>
+    </div>
+    <div class="story-footer"><span>Trusted by 2,400+ teams</span><span class="operational"><i></i> All systems operational</span></div>
+  </section>
+
+  <section class="login-panel">
+    <div class="login-form-wrap">
+      <p class="eyebrow">WELCOME BACK</p>
+      <h2>Sign in to your workspace</h2>
+      <p class="form-intro">Use a demo account to explore each role.</p>
+
+      <div class="role-options" aria-label="Choose a demo role">
+        @for (role of roles; track role.role) {
+          <button type="button" class="role-option" [class.selected]="selectedRole === role.role" (click)="selectRole(role)">
+            <span class="role-initial">{{ role.initial }}</span>{{ role.label }}
+          </button>
+        }
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <label for="email">Email address</label>
+        <input id="email" type="email" autocomplete="username" formControlName="email">
+        @if (form.controls.email.touched && form.controls.email.invalid) {
+          <p class="field-error">Enter a valid email address.</p>
+        }
+
+        <label for="password">Password</label>
+        <input id="password" type="password" autocomplete="current-password" formControlName="password">
+        @if (errorMessage) {
+          <p class="form-error" role="alert">{{ errorMessage }}</p>
+        }
+
+        <button class="submit-button" type="submit" [disabled]="loading">
+          {{ loading ? 'Opening workspace…' : 'Enter workspace' }} <span aria-hidden="true">↗</span>
+        </button>
+      </form>
+      <p class="demo-hint">Demo password <code>QueueDemo!2026</code></p>
+    </div>
+  </section>
+</main>

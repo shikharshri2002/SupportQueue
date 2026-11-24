@@ -1,0 +1,14 @@
+
+# .NET
+**/bin/
+**/obj/
+*.user
+*.suo
+
+# Angular
+Frontend/node_modules/
+Frontend/dist/
+Frontend/.angular/
+
+# Local configuration
+*.local.json
